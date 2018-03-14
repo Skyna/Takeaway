@@ -1,0 +1,6 @@
+framework module Pods_Takeaway {
+  umbrella header "Pods-Takeaway-umbrella.h"
+
+  export *
+  module * { export * }
+}
