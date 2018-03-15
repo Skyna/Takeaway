@@ -133,8 +133,11 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TrO-zh-ed5">
-                                            <rect key="frame" x="317" y="19" width="42" height="21"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favorite-no" translatesAutoresizingMaskIntoConstraints="NO" id="wdd-LF-fiW">
+                                            <rect key="frame" x="334" y="17" width="25" height="25"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TrO-zh-ed5">
+                                            <rect key="frame" x="285" y="19" width="41" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -142,14 +145,17 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Z9I-Jw-ymo" firstAttribute="leading" secondItem="pc0-F2-kIL" secondAttribute="leadingMargin" id="9z8-41-lbf"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="wdd-LF-fiW" secondAttribute="trailing" id="GCQ-3E-Vhs"/>
                                         <constraint firstItem="Z9I-Jw-ymo" firstAttribute="top" secondItem="Jgp-Yd-dva" secondAttribute="bottom" id="MT4-M5-o9x"/>
                                         <constraint firstItem="TrO-zh-ed5" firstAttribute="centerY" secondItem="pc0-F2-kIL" secondAttribute="centerY" id="Phc-cn-eGb"/>
-                                        <constraint firstItem="TrO-zh-ed5" firstAttribute="trailing" secondItem="pc0-F2-kIL" secondAttribute="trailingMargin" id="rEu-dL-1jD"/>
+                                        <constraint firstItem="wdd-LF-fiW" firstAttribute="leading" secondItem="TrO-zh-ed5" secondAttribute="trailing" constant="8" id="ejv-4I-A7a"/>
                                         <constraint firstItem="Jgp-Yd-dva" firstAttribute="leading" secondItem="pc0-F2-kIL" secondAttribute="leadingMargin" id="sNc-99-Uef"/>
                                         <constraint firstItem="Jgp-Yd-dva" firstAttribute="top" secondItem="pc0-F2-kIL" secondAttribute="topMargin" id="tSU-OU-E7x"/>
+                                        <constraint firstItem="wdd-LF-fiW" firstAttribute="centerY" secondItem="pc0-F2-kIL" secondAttribute="centerY" id="wQd-sS-145"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="imgFavorite" destination="wdd-LF-fiW" id="rPb-mE-5Y8"/>
                                     <outlet property="lblName" destination="Jgp-Yd-dva" id="cbQ-LC-ABh"/>
                                     <outlet property="lblOpeningState" destination="Z9I-Jw-ymo" id="hXh-U4-WW3"/>
                                     <outlet property="lblSortValue" destination="TrO-zh-ed5" id="474-xI-bAe"/>
@@ -164,10 +170,11 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x10-SD-kGM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="251"/>
+            <point key="canvasLocation" x="600.79999999999995" y="250.52473763118442"/>
         </scene>
     </scenes>
     <resources>
+        <image name="favorite-no" width="25" height="25"/>
         <namedColor name="Orange">
             <color red="0.98799997568130493" green="0.41600000858306885" blue="0.035000000149011612" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

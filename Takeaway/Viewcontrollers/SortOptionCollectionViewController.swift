@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import RxDataSources
 
-class SortOptionCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class SortOptionCollectionViewController: UICollectionViewController {
     
     let disposeBag = DisposeBag()
     var sortingOptions : BehaviorRelay<[SortingOption]> {
@@ -77,6 +77,13 @@ class SortOptionCollectionViewController: UICollectionViewController, UICollecti
                     strongSelf.sortingModel.currentSortOption.accept(option)
                 }
             }).disposed(by: self.disposeBag)
+    }
+}
+
+extension SortOptionCollectionViewController : UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = collectionView.bounds.size.height
+        return CGSize(width: height, height: height)
     }
 }
 

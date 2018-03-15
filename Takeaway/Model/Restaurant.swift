@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Restaurant : Decodable {
+struct Restaurant : Codable {
     var name            : String
     var status          : String
     var sortingValues   : SortingValues
@@ -36,7 +36,7 @@ struct Restaurant : Decodable {
     }
 }
 
-struct SortingValues : Decodable {
+struct SortingValues : Codable {
     let bestMatch           : Double
     let newest              : Double
     let ratingAverage       : Double

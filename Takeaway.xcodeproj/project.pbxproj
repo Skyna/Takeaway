@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7BB3B5033737387E9E1E3FD7 /* Pods_Takeaway.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCCEF0E21534BB5D09F24D6 /* Pods_Takeaway.framework */; };
 		C304C64E2059B56100DC84DC /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C304C64D2059B56100DC84DC /* DataHandler.swift */; };
+		C34E521D205AE455007CDDDC /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34E521C205AE455007CDDDC /* Storage.swift */; };
 		C369B4E5205865600075C7A1 /* RestaurantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369B4E4205865600075C7A1 /* RestaurantsTableViewController.swift */; };
 		C369B4E7205865760075C7A1 /* SortOptionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369B4E6205865760075C7A1 /* SortOptionCollectionViewController.swift */; };
 		C369B4E9205870950075C7A1 /* SortingOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369B4E8205870950075C7A1 /* SortingOption.swift */; };
@@ -29,6 +30,7 @@
 		4BCCEF0E21534BB5D09F24D6 /* Pods_Takeaway.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Takeaway.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6930F0116B602EFE92E6AF12 /* Pods-Takeaway.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Takeaway.release.xcconfig"; path = "Pods/Target Support Files/Pods-Takeaway/Pods-Takeaway.release.xcconfig"; sourceTree = "<group>"; };
 		C304C64D2059B56100DC84DC /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
+		C34E521C205AE455007CDDDC /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		C369B4E4205865600075C7A1 /* RestaurantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsTableViewController.swift; sourceTree = "<group>"; };
 		C369B4E6205865760075C7A1 /* SortOptionCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionCollectionViewController.swift; sourceTree = "<group>"; };
 		C369B4E8205870950075C7A1 /* SortingOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingOption.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				C3A38C4A205837230085613D /* JSONParser.swift */,
+				C34E521C205AE455007CDDDC /* Storage.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C369B4E5205865600075C7A1 /* RestaurantsTableViewController.swift in Sources */,
+				C34E521D205AE455007CDDDC /* Storage.swift in Sources */,
 				C3A38C50205851810085613D /* Restaurant.swift in Sources */,
 				C369B4E9205870950075C7A1 /* SortingOption.swift in Sources */,
 				C3A38C372058362F0085613D /* ViewController.swift in Sources */,

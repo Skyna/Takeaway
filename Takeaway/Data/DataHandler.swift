@@ -7,20 +7,26 @@
 //
 
 import Foundation
-import RxCocoa
 
 class DataHandler {
-    static func getRestaurants() -> BehaviorRelay<[Restaurant]>{
-        let restaurantsRelay = BehaviorRelay<[Restaurant]>(value: [])
+    
+    static func getRestaurants() -> [Restaurant]{
         do {
             let dictionary : [String:[Restaurant]] = try JSONParser.parse("sample")
             if let restaurants = dictionary["restaurants"] {
-                restaurantsRelay.accept(restaurants)
-                return restaurantsRelay
+                return restaurants
             }
         } catch {
             print("error", error)
         }
-        return restaurantsRelay
+        return []
+    }
+    
+    static func getNonFavoriteRestaurants() -> [Restaurant]{
+        return DataHandler.getRestaurants().filter{!Storage.fileExists($0.name)}
+    }
+    
+    static func getFavoriteRestaurants() -> [Restaurant]{
+        return DataHandler.getRestaurants().filter{Storage.fileExists($0.name)}
     }
 }
