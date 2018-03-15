@@ -27,7 +27,7 @@ class SortOptionCollectionViewController: UICollectionViewController {
         
     }
     
-    let sortingModel            = SortingModel.shared
+    let restaurantModel            = RestaurantModel.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,14 +36,14 @@ class SortOptionCollectionViewController: UICollectionViewController {
         self.collectionView?.dataSource = nil
         self.sortingOptions.bind(to: self.collectionView!.rx.items(cellIdentifier: "Cell", cellType: SortingCollectionViewCell.self)){ row, model, cell in
             if model.isOpeningState {
-                self.sortingModel.currentOpeningState
+                self.restaurantModel.currentOpeningState
                                 .asObservable()
                                 .map{$0.name}
                                 .bind(to: cell.lblName!.rx.text)
                                 .disposed(by: self.disposeBag)
             }
             else {
-                self.sortingModel.currentSortOption
+                self.restaurantModel.currentSortOption
                     .asObservable()
                     .map{$0 == model ? UIColor(named:"SelectedOrange") : UIColor(named:"Orange")}
                     .subscribe(onNext: {cell.backgroundColor = $0})
@@ -62,19 +62,19 @@ class SortOptionCollectionViewController: UICollectionViewController {
                 
                 //Keep reference for chosen opening state
                 if option.isOpeningState {
-                    strongSelf.sortingModel.openChoiceForOpeningState.accept(true)
+                    strongSelf.restaurantModel.openChoiceForOpeningState.accept(true)
                 }
                 
                 //Keep reference for sort by values
                 if !option.isOpeningState {
-                    if strongSelf.sortingModel.currentSortOption.value == option {
-                        strongSelf.sortingModel.currentSortIsReverse.accept(!strongSelf.sortingModel.currentSortIsReverse.value)
+                    if strongSelf.restaurantModel.currentSortOption.value == option {
+                        strongSelf.restaurantModel.currentSortIsReverse.accept(!strongSelf.restaurantModel.currentSortIsReverse.value)
                     }
                     else{
-                         strongSelf.sortingModel.currentSortIsReverse.accept(false)
+                         strongSelf.restaurantModel.currentSortIsReverse.accept(false)
                     }
                     
-                    strongSelf.sortingModel.currentSortOption.accept(option)
+                    strongSelf.restaurantModel.currentSortOption.accept(option)
                 }
             }).disposed(by: self.disposeBag)
     }

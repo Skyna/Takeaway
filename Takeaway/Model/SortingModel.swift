@@ -1,5 +1,5 @@
 //
-//  SortingModel.swift
+//  RestaurantModel.swift
 //  Takeaway
 //
 //  Created by Emre Akman on 14/03/2018.
@@ -10,9 +10,9 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class SortingModel {
+class RestaurantModel {
     
-    static let shared : SortingModel = SortingModel()
+    static let shared : RestaurantModel = RestaurantModel()
     
     var openChoiceForOpeningState   = PublishRelay<Bool>()
     var currentSortOption           = BehaviorRelay<SortingOption>(value:.bestMatch)

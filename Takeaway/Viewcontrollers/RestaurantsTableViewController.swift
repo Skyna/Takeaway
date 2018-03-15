@@ -19,7 +19,7 @@ class RestaurantsTableViewController: UITableViewController {
     }
 
     let disposeBag              = DisposeBag()
-    let sortingModel            = SortingModel.shared
+    let restaurantModel         = RestaurantModel.shared
     var dataSource              : RxTableViewSectionedReloadDataSource<RestaurantSection>?
     var sections                = BehaviorRelay<[RestaurantSection]>(value:[])
     
@@ -33,7 +33,7 @@ class RestaurantsTableViewController: UITableViewController {
                 let cell = tv.dequeueReusableCell(withIdentifier: "Cell") as! RestaurantCell
                 cell.lblName?.text = model.name
                 cell.lblOpeningState?.text = model.status
-                self.sortingModel.currentSortOption
+                self.restaurantModel.currentSortOption
                     .asObservable()
                     .map{model.sortValue($0)}
                     .bind(to: cell.lblSortValue!.rx.text)
@@ -69,9 +69,9 @@ class RestaurantsTableViewController: UITableViewController {
                 
             }).disposed(by: self.disposeBag)
         
-        Observable.combineLatest(sortingModel.currentOpeningState.asObservable(),
-                                 sortingModel.currentSortOption.asObservable(),
-                                 sortingModel.currentSortIsReverse.asObservable())
+        Observable.combineLatest(restaurantModel.currentOpeningState.asObservable(),
+                                 restaurantModel.currentSortOption.asObservable(),
+                                 restaurantModel.currentSortIsReverse.asObservable())
             .subscribe(onNext: { [weak self] (currentOpeningState, currentSortOption, reverse) in
                 guard let strongSelf = self else { return }
                 strongSelf.sortRestaurants()
@@ -81,10 +81,10 @@ class RestaurantsTableViewController: UITableViewController {
     
     private func sortRestaurants(){
         func sort(_ restaurants : [Restaurant]) -> [Restaurant] {
-            return restaurants.sorted(by: self.sortingModel.currentOpeningState.value.sort) //Sort by opening state
-                              .sorted(by: self.sortingModel.currentSortIsReverse.value ?
-                                self.sortingModel.currentSortOption.value.sortReverse :
-                                self.sortingModel.currentSortOption.value.sort)//Sort by value
+            return restaurants.sorted(by: self.restaurantModel.currentOpeningState.value.sort) //Sort by opening state
+                              .sorted(by: self.restaurantModel.currentSortIsReverse.value ?
+                                self.restaurantModel.currentSortOption.value.sortReverse :
+                                self.restaurantModel.currentSortOption.value.sort)//Sort by value
         }
         
         let favorites       = sort(DataHandler.getFavoriteRestaurants())

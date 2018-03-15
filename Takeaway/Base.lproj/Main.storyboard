@@ -38,11 +38,15 @@
                                     <segue destination="IWf-HD-Hn5" kind="embed" identifier="sorting" id="Xas-ps-shA"/>
                                 </connections>
                             </containerView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="IUW-q3-YfR">
+                            <searchBar contentMode="redraw" placeholder="Search by restaurant name.." showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IUW-q3-YfR">
                                 <rect key="frame" x="0.0" y="120" width="375" height="56"/>
                                 <color key="backgroundColor" red="1" green="0.40739924634027558" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" name="Orange"/>
                                 <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="t0y-U4-glG" id="tUL-I1-L6P"/>
+                                </connections>
                             </searchBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thuisbezorgd" translatesAutoresizingMaskIntoConstraints="NO" id="M2Q-xP-bEN">
                                 <rect key="frame" x="90" y="60" width="195" height="29"/>
@@ -68,6 +72,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wHz-ia-aAu"/>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="IUW-q3-YfR" id="BjD-ev-IBi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BC1-jO-4PY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -197,6 +204,9 @@
         <image name="background" width="318" height="213"/>
         <image name="favorite-no" width="25" height="25"/>
         <image name="thuisbezorgd" width="195" height="29"/>
+        <namedColor name="Orange">
+            <color red="0.98799997568130493" green="0.41600000858306885" blue="0.035000000149011612" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Orange">
             <color red="0.98799997568130493" green="0.41600000858306885" blue="0.035000000149011612" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
