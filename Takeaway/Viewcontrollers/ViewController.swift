@@ -28,7 +28,7 @@ class ViewController: UIViewController {
 extension ViewController{
     func showOpeningsOptions(){
         
-        let actionSheet = UIAlertController(title: "Opening", message: "Choose an option state.", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Opening State", message: "Choose an option state.", preferredStyle: .actionSheet)
 
         actionSheet.addAction( UIAlertAction(title: OpeningState.open.value, style: .default) { (action) in
             self.sortingModel.currentOpeningState.accept(SortingOption.openingState(.open))
