@@ -27,6 +27,7 @@ class RestaurantsTableViewController: UITableViewController {
         super.viewDidLoad()
         //The UITableView's datasource is set by default, but since RxDataSources implements it's own datasource for the UITableView. Set it to nil or xCode will crash.
         self.tableView.dataSource = nil
+        self.tableView.rowHeight = 44
         self.dataSource = RxTableViewSectionedReloadDataSource<RestaurantSection>(
             configureCell: { ds, tv, ip, model in
                 let cell = tv.dequeueReusableCell(withIdentifier: "Cell") as! RestaurantCell
@@ -45,8 +46,6 @@ class RestaurantsTableViewController: UITableViewController {
         }, titleForHeaderInSection: { (ds, section) -> String? in
             return ds[section].headerValue()
         })
-        
-        
         
         self.sections
             .asObservable()

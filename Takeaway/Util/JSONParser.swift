@@ -13,7 +13,6 @@ public class JSONParser {
     
     enum ParseError : Error{
         case fileNotFound
-        case cannotOpenFile
         case cannotParseJson
     }
     
@@ -23,10 +22,6 @@ public class JSONParser {
         }
         
         let url = URL(fileURLWithPath: path)
-        
-        guard UIApplication.shared.canOpenURL(url) else {
-            throw ParseError.cannotOpenFile
-        }
         
         do {
             let data = try Data(contentsOf: url, options: .alwaysMapped)
