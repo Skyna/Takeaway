@@ -20,14 +20,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="9If-yI-5Hr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="213"/>
+                            </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2m-Bh-0YJ">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="246" width="375" height="421"/>
                                 <connections>
                                     <segue destination="ggo-7k-1Ee" kind="embed" identifier="restaurants" id="fFl-9t-ZLe"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="72d-oH-1Xc">
-                                <rect key="frame" x="0.0" y="40" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="176" width="375" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="Kcu-dP-ZHx"/>
                                 </constraints>
@@ -35,16 +38,33 @@
                                     <segue destination="IWf-HD-Hn5" kind="embed" identifier="sorting" id="Xas-ps-shA"/>
                                 </connections>
                             </containerView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="IUW-q3-YfR">
+                                <rect key="frame" x="0.0" y="120" width="375" height="56"/>
+                                <color key="backgroundColor" red="1" green="0.40739924634027558" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thuisbezorgd" translatesAutoresizingMaskIntoConstraints="NO" id="M2Q-xP-bEN">
+                                <rect key="frame" x="90" y="60" width="195" height="29"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" name="Orange"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="72d-oH-1Xc" firstAttribute="leading" secondItem="wHz-ia-aAu" secondAttribute="leading" id="HbC-xe-oAk"/>
                             <constraint firstItem="v2m-Bh-0YJ" firstAttribute="top" secondItem="72d-oH-1Xc" secondAttribute="bottom" id="HjK-KQ-2bx"/>
+                            <constraint firstItem="9If-yI-5Hr" firstAttribute="leading" secondItem="wHz-ia-aAu" secondAttribute="leading" id="MWk-71-hea"/>
+                            <constraint firstItem="M2Q-xP-bEN" firstAttribute="top" secondItem="wHz-ia-aAu" secondAttribute="top" constant="40" id="MfQ-eK-vIh"/>
                             <constraint firstAttribute="bottom" secondItem="v2m-Bh-0YJ" secondAttribute="bottom" id="Psb-Bh-lRd"/>
-                            <constraint firstItem="72d-oH-1Xc" firstAttribute="top" secondItem="wHz-ia-aAu" secondAttribute="top" constant="20" id="TCS-Ov-bZ7"/>
+                            <constraint firstItem="M2Q-xP-bEN" firstAttribute="centerX" secondItem="wHz-ia-aAu" secondAttribute="centerX" id="WAA-xa-9ab"/>
                             <constraint firstItem="72d-oH-1Xc" firstAttribute="trailing" secondItem="wHz-ia-aAu" secondAttribute="trailing" id="YI7-fl-gRc"/>
+                            <constraint firstItem="9If-yI-5Hr" firstAttribute="trailing" secondItem="wHz-ia-aAu" secondAttribute="trailing" id="Yb7-1V-g0d"/>
+                            <constraint firstItem="IUW-q3-YfR" firstAttribute="top" secondItem="wHz-ia-aAu" secondAttribute="top" constant="100" id="ZkS-hO-G8M"/>
                             <constraint firstItem="v2m-Bh-0YJ" firstAttribute="trailing" secondItem="wHz-ia-aAu" secondAttribute="trailing" id="bbG-yp-cEl"/>
+                            <constraint firstItem="IUW-q3-YfR" firstAttribute="trailing" secondItem="wHz-ia-aAu" secondAttribute="trailing" id="l7R-kO-ABW"/>
+                            <constraint firstItem="9If-yI-5Hr" firstAttribute="top" secondItem="h18-Yh-2V4" secondAttribute="top" id="omx-du-nDB"/>
+                            <constraint firstItem="72d-oH-1Xc" firstAttribute="top" secondItem="IUW-q3-YfR" secondAttribute="bottom" id="qoy-4f-dgx"/>
                             <constraint firstItem="v2m-Bh-0YJ" firstAttribute="leading" secondItem="wHz-ia-aAu" secondAttribute="leading" id="rgf-jq-l1L"/>
+                            <constraint firstItem="IUW-q3-YfR" firstAttribute="leading" secondItem="wHz-ia-aAu" secondAttribute="leading" id="vry-JY-q0Q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wHz-ia-aAu"/>
                     </view>
@@ -110,7 +130,7 @@
             <objects>
                 <tableViewController id="ggo-7k-1Ee" customClass="RestaurantsTableViewController" customModule="Takeaway" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TTb-f6-g9G">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="557"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="421"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -174,7 +194,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="background" width="318" height="213"/>
         <image name="favorite-no" width="25" height="25"/>
+        <image name="thuisbezorgd" width="195" height="29"/>
         <namedColor name="Orange">
             <color red="0.98799997568130493" green="0.41600000858306885" blue="0.035000000149011612" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
