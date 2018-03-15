@@ -11,10 +11,6 @@ import RxCocoa
 import RxSwift
 import RxDataSources
 
-protocol SortOptionCollectionViewControllerDelegate {
-    func didSelectSortOption(_ option : SortingOption)
-}
-
 class SortOptionCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let disposeBag = DisposeBag()
@@ -31,7 +27,6 @@ class SortOptionCollectionViewController: UICollectionViewController, UICollecti
         
     }
     
-    var delegate : SortOptionCollectionViewControllerDelegate?
     let sortingModel            = SortingModel.shared
 
     override func viewDidLoad() {
@@ -61,16 +56,30 @@ class SortOptionCollectionViewController: UICollectionViewController, UICollecti
         self.collectionView?.rx.itemSelected
             .throttle(0.1, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] index in
-                guard let strongSelf = self,
-                      let delegate = strongSelf.delegate else { return }
+                guard let strongSelf = self else { return }
 
-                let sortingOption = strongSelf.sortingOptions.value[index.row]
-
-                delegate.didSelectSortOption(sortingOption)
+                let option = strongSelf.sortingOptions.value[index.row]
+                
+                //Keep reference for chosen opening state
+                if option.isOpeningState {
+                    strongSelf.sortingModel.openChoiceForOpeningState.accept(true)
+                }
+                
+                //Keep reference for sort by values
+                if !option.isOpeningState {
+                    if strongSelf.sortingModel.currentSortOption.value == option {
+                        strongSelf.sortingModel.currentSortIsReverse.accept(!strongSelf.sortingModel.currentSortIsReverse.value)
+                    }
+                    else{
+                         strongSelf.sortingModel.currentSortIsReverse.accept(false)
+                    }
+                    
+                    strongSelf.sortingModel.currentSortOption.accept(option)
+                }
             }).disposed(by: self.disposeBag)
     }
 }
 
-class SortingCollectionViewCell : UICollectionViewCell {
+internal class SortingCollectionViewCell : UICollectionViewCell {
     @IBOutlet var lblName : UILabel?
 }

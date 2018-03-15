@@ -7,52 +7,39 @@
 //
 
 import UIKit
+import RxSwift
 
 class ViewController: UIViewController {
-    var restaurantsViewController   : RestaurantsTableViewController?
-    var sortOptionViewController    : SortOptionCollectionViewController?
+    let sortingModel  = SortingModel.shared
+    let disposeBag    = DisposeBag()
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "restaurants"{
-            restaurantsViewController = segue.destination as? RestaurantsTableViewController
-        }
-        else if segue.identifier == "sorting"{
-            sortOptionViewController = segue.destination as? SortOptionCollectionViewController
-            sortOptionViewController?.delegate = self
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        sortingModel.openChoiceForOpeningState
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.showOpeningsOptions()
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 
-extension ViewController : SortOptionCollectionViewControllerDelegate{
-    func didSelectSortOption(_ option : SortingOption){
-        if let restaurantsViewController = self.restaurantsViewController {
-            if option.isOpeningState{
-                showOpeningsOptions()
-            }
-            else{
-                restaurantsViewController.sortRestaurants(option: option)
-            }
-        }
-    }
-}
-
-//Util
 extension ViewController{
     func showOpeningsOptions(){
-        guard let restaurantsViewController = self.restaurantsViewController else { return }
         
-        let actionSheet = UIAlertController(title: "Opening", message: "Choose an option.", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Opening", message: "Choose an option state.", preferredStyle: .actionSheet)
 
         actionSheet.addAction( UIAlertAction(title: OpeningState.open.value, style: .default) { (action) in
-            restaurantsViewController.sortRestaurants(option: .openingState(.open))
+            self.sortingModel.currentOpeningState.accept(SortingOption.openingState(.open))
         })
         
         actionSheet.addAction( UIAlertAction(title: OpeningState.orderAhead.value, style: .default) { (action) in
-            restaurantsViewController.sortRestaurants(option: .openingState(.orderAhead))
+            self.sortingModel.currentOpeningState.accept(SortingOption.openingState(.orderAhead))
         })
         
         actionSheet.addAction( UIAlertAction(title: OpeningState.closed.value, style: .default) { (action) in
-            restaurantsViewController.sortRestaurants(option: .openingState(.closed))
+            self.sortingModel.currentOpeningState.accept(SortingOption.openingState(.closed))
         })
         
         actionSheet.addAction( UIAlertAction(title: "Cancel", style: .cancel, handler : nil))

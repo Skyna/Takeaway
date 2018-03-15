@@ -31,27 +31,17 @@ class RestaurantsTableViewController: UITableViewController {
             .subscribe(onNext: { [weak self] index in
                 self?.tableView.deselectRow(at: index, animated: true)
             }).disposed(by: self.disposeBag)
-    }
-    
-    func sortRestaurants(option : SortingOption){
-        print("Sort ", option)
         
-        //Keep reference for chosen opening state
-        if option.isOpeningState {
-            sortingModel.currentOpeningState.accept(option)
-        }
-        
-        let sortedRestaurant = self.restaurants.value
-            .sorted(by: (option == sortingModel.currentSortOption.value && !sortingModel.currentSortIsReverse.value) ? option.sortReverse : option.sort)//Sort by value
-            .sorted(by: sortingModel.currentOpeningState.value.sort) //Sort by opening state
-        
-        self.restaurants.accept(sortedRestaurant)
-        
-        //Keep reference for sort by values
-        if !option.isOpeningState {
-            sortingModel.currentSortIsReverse.accept(!sortingModel.currentSortIsReverse.value)
-            sortingModel.currentSortOption.accept(option)
-        }
-        self.tableView.reloadData()
+        Observable.combineLatest(sortingModel.currentOpeningState.asObservable(),
+                                 sortingModel.currentSortOption.asObservable(),
+                                 sortingModel.currentSortIsReverse.asObservable())
+            .subscribe(onNext: { (currentOpeningState, currentSortOption, reverse) in
+                let sortedRestaurant = self.restaurants.value
+                    .sorted(by: reverse ? currentSortOption.sortReverse : currentSortOption.sort)//Sort by value
+                    .sorted(by: currentOpeningState.sort) //Sort by opening state
+                self.restaurants.accept(sortedRestaurant)
+                self.tableView.reloadData()
+            })
+            .disposed(by: self.disposeBag)
     }
 }

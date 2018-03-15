@@ -120,6 +120,4 @@ extension SortingOption : Equatable{
     public static func ==(lhs: SortingOption, rhs: SortingOption) -> Bool {
         return lhs.name == rhs.name
     }
-    
-    
 }

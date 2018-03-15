@@ -14,8 +14,9 @@ class SortingModel {
     
     static let shared : SortingModel = SortingModel()
     
-    var currentSortOption       = BehaviorRelay<SortingOption>(value:.none)
-    var currentOpeningState     = BehaviorRelay<SortingOption>(value:.openingState(.all))
-    var currentSortIsReverse    = BehaviorRelay<Bool>(value: false)
+    var openChoiceForOpeningState   = PublishRelay<Bool>()
+    var currentSortOption           = BehaviorRelay<SortingOption>(value:.none)
+    var currentOpeningState         = BehaviorRelay<SortingOption>(value:.openingState(.all))
+    var currentSortIsReverse        = BehaviorRelay<Bool>(value: false)
     
 }
