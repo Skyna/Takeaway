@@ -6,5 +6,4 @@ target 'Takeaway' do
     pod 'RxSwift'
     pod 'RxCocoa'
     pod 'RxDataSources', '~> 3.0'
-    
 end

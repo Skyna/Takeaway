@@ -37,10 +37,6 @@ extension ViewController{
             self.restaurantModel.currentOpeningState.accept(SortingOption.openingState(.open))
         })
         
-        actionSheet.addAction( UIAlertAction(title: OpeningState.orderAhead.value, style: .default) { (action) in
-            self.restaurantModel.currentOpeningState.accept(SortingOption.openingState(.orderAhead))
-        })
-        
         actionSheet.addAction( UIAlertAction(title: OpeningState.closed.value, style: .default) { (action) in
             self.restaurantModel.currentOpeningState.accept(SortingOption.openingState(.closed))
         })
@@ -54,6 +50,7 @@ extension ViewController{
 extension ViewController : UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        restaurantModel.searchSubject.accept(searchBar.text!)
         searchBar.endEditing(true)
     }
     

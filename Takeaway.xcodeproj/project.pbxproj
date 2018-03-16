@@ -22,7 +22,7 @@
 		C3A38C4B205837230085613D /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A38C4A205837230085613D /* JSONParser.swift */; };
 		C3A38C50205851810085613D /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A38C4F205851810085613D /* Restaurant.swift */; };
 		C3BE118D2059C4F500241A26 /* OpeningState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE118C2059C4F500241A26 /* OpeningState.swift */; };
-		C3BE119A2059D3EA00241A26 /* SortingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE11992059D3EA00241A26 /* SortingModel.swift */; };
+		C3BE119A2059D3EA00241A26 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BE11992059D3EA00241A26 /* RestaurantModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +47,7 @@
 		C3BE118C2059C4F500241A26 /* OpeningState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningState.swift; sourceTree = "<group>"; };
 		C3BE118E2059CADA00241A26 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
 		C3BE118F2059CADA00241A26 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		C3BE11992059D3EA00241A26 /* SortingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingModel.swift; sourceTree = "<group>"; };
+		C3BE11992059D3EA00241A26 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				C3A38C4F205851810085613D /* Restaurant.swift */,
-				C3BE11992059D3EA00241A26 /* SortingModel.swift */,
+				C3BE11992059D3EA00241A26 /* RestaurantModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,8 +256,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Takeaway/Pods-Takeaway-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -265,8 +263,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -306,7 +302,7 @@
 				C3A38C50205851810085613D /* Restaurant.swift in Sources */,
 				C369B4E9205870950075C7A1 /* SortingOption.swift in Sources */,
 				C3A38C372058362F0085613D /* ViewController.swift in Sources */,
-				C3BE119A2059D3EA00241A26 /* SortingModel.swift in Sources */,
+				C3BE119A2059D3EA00241A26 /* RestaurantModel.swift in Sources */,
 				C304C64E2059B56100DC84DC /* DataHandler.swift in Sources */,
 				C3A38C352058362F0085613D /* AppDelegate.swift in Sources */,
 				C3A38C4B205837230085613D /* JSONParser.swift in Sources */,

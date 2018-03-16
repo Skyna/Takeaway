@@ -77,18 +77,24 @@ class RestaurantsTableViewController: UITableViewController {
                 strongSelf.sortRestaurants()
             })
             .disposed(by: self.disposeBag)
+        
+        
+        restaurantModel.searchSubject.asObservable()
+            .subscribe(onNext: { [weak self] (text) in
+                guard let strongSelf = self else { return }
+                strongSelf.sortRestaurants(text)
+            })
+            .disposed(by: self.disposeBag)
     }
     
-    private func sortRestaurants(){
-        func sort(_ restaurants : [Restaurant]) -> [Restaurant] {
-            return restaurants.sorted(by: self.restaurantModel.currentOpeningState.value.sort) //Sort by opening state
-                              .sorted(by: self.restaurantModel.currentSortIsReverse.value ?
-                                self.restaurantModel.currentSortOption.value.sortReverse :
-                                self.restaurantModel.currentSortOption.value.sort)//Sort by value
-        }
+    private func sortRestaurants(_ searchText : String? = nil){
         
-        let favorites       = sort(DataHandler.getFavoriteRestaurants())
-        let nonFavorites    = sort(DataHandler.getNonFavoriteRestaurants())
+        let favorites       = RestaurantModel.shared.sort(DataHandler.getFavoriteRestaurants())
+        let nonFavorites    = RestaurantModel.shared.sort(DataHandler.getNonFavoriteRestaurants())
+        
+        if let searchText = searchText {
+            
+        }
         
         self.sections.accept([RestaurantSection(header: "Favorite", items: favorites),
                                RestaurantSection(header: "Restaurants", items: nonFavorites)])

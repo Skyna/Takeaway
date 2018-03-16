@@ -51,16 +51,22 @@ public enum SortingOption{
         }
     }
     
-    func sort(a : Restaurant, b : Restaurant) -> Bool{
+    var sortValue : String{
         switch self {
         case .openingState(.all):
-            return a.status < b.status
-        case .openingState(.open):
-            return a.status == OpeningState.open.sortValue
+            return OpeningState.all.sortValue
         case .openingState(.closed):
-            return a.status == OpeningState.closed.sortValue
+            return OpeningState.closed.sortValue
         case .openingState(.orderAhead):
-            return a.status == OpeningState.orderAhead.sortValue
+            return OpeningState.orderAhead.sortValue
+        case .openingState(.open):
+            return OpeningState.open.sortValue
+        default: return ""
+        }
+    }
+    
+    func sort(a : Restaurant, b : Restaurant) -> Bool{
+        switch self {
         case .bestMatch:
             return a.sortingValues.bestMatch < b.sortingValues.bestMatch
         case .newest:
@@ -77,15 +83,12 @@ public enum SortingOption{
             return a.sortingValues.deliveryCosts < b.sortingValues.deliveryCosts
         case .minCost:
             return a.sortingValues.minCost < b.sortingValues.minCost
-        case .none:
-            return false
+        default: return false
         }
     }
     
     func sortReverse(a : Restaurant, b : Restaurant) -> Bool{
         switch self {
-        case .openingState:
-            return a.status > b.status
         case .bestMatch:
             return a.sortingValues.bestMatch > b.sortingValues.bestMatch
         case .newest:
@@ -102,8 +105,7 @@ public enum SortingOption{
             return a.sortingValues.deliveryCosts > b.sortingValues.deliveryCosts
         case .minCost:
             return a.sortingValues.minCost > b.sortingValues.minCost
-        case .none:
-            return false
+        default: return false
         }
     }
     
