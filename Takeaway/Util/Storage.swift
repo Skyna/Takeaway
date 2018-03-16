@@ -10,11 +10,12 @@ import Foundation
 
 
 public class Storage {
-    
     fileprivate init() { }
     
     static func store<T: Encodable>(_ object: T, fileName: String) {
-        guard let urlCache = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return }
+        guard let urlCache = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+            return
+        }
         
         let url = urlCache.appendingPathComponent(fileName, isDirectory: false)
         
@@ -26,7 +27,7 @@ public class Storage {
             }
             FileManager.default.createFile(atPath: url.path, contents: data, attributes: nil)
         } catch {
-            fatalError(error.localizedDescription)
+            print(error.localizedDescription)
         }
     }
     

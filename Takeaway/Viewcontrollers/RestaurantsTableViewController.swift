@@ -80,20 +80,30 @@ class RestaurantsTableViewController: UITableViewController {
         
         
         restaurantModel.searchSubject.asObservable()
+            .throttle(0.1, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (text) in
                 guard let strongSelf = self else { return }
-                strongSelf.sortRestaurants(text)
+                strongSelf.sortRestaurants()
+            })
+            .disposed(by: self.disposeBag)
+        
+        restaurantModel.resetRestaurantList.asObservable()
+            .subscribe(onNext: { [weak self] (text) in
+                guard let strongSelf = self else { return }
+                strongSelf.sortRestaurants()
             })
             .disposed(by: self.disposeBag)
     }
     
-    private func sortRestaurants(_ searchText : String? = nil){
+    private func sortRestaurants(){
         
-        let favorites       = RestaurantModel.shared.sort(DataHandler.getFavoriteRestaurants())
-        let nonFavorites    = RestaurantModel.shared.sort(DataHandler.getNonFavoriteRestaurants())
+        var favorites       = RestaurantModel.shared.sort(DataHandler.getFavoriteRestaurants())
+        var nonFavorites    = RestaurantModel.shared.sort(DataHandler.getNonFavoriteRestaurants())
+        let searchText      = self.restaurantModel.searchSubject.value
         
-        if let searchText = searchText {
-            
+        if !searchText.isEmpty {
+            favorites = favorites.filter{$0.name.lowercased().contains(searchText.lowercased())}
+            nonFavorites = nonFavorites.filter{$0.name.lowercased().contains(searchText.lowercased())}
         }
         
         self.sections.accept([RestaurantSection(header: "Favorite", items: favorites),

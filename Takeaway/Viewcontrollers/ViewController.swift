@@ -31,7 +31,7 @@ class ViewController: UIViewController {
 extension ViewController{
     func showOpeningsOptions(){
         
-        let actionSheet = UIAlertController(title: "Opening State", message: "Choose an option state.", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Opening State", message: "Choose an openings state.", preferredStyle: .actionSheet)
 
         actionSheet.addAction( UIAlertAction(title: OpeningState.open.value, style: .default) { (action) in
             self.restaurantModel.currentOpeningState.accept(SortingOption.openingState(.open))
@@ -55,7 +55,18 @@ extension ViewController : UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        restaurantModel.resetRestaurantList.accept(true)
+        restaurantModel.searchSubject.accept("")
         searchBar.text = ""
         searchBar.endEditing(true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty{
+            restaurantModel.resetRestaurantList.accept(true)
+        }
+        else{
+            restaurantModel.searchSubject.accept(searchBar.text!)
+        }
     }
 }

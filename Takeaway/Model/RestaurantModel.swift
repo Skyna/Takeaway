@@ -14,8 +14,9 @@ class RestaurantModel {
     
     static let shared : RestaurantModel = RestaurantModel()
     
-    var searchSubject               = PublishRelay<String>()
+    var searchSubject               = BehaviorRelay<String>(value:"")
     var openChoiceForOpeningState   = PublishRelay<Bool>()
+    var resetRestaurantList         = PublishRelay<Bool>()
     var currentSortOption           = BehaviorRelay<SortingOption>(value:.bestMatch)
     var currentOpeningState         = BehaviorRelay<SortingOption>(value:.openingState(.all))
     var currentSortIsReverse        = BehaviorRelay<Bool>(value: false)
