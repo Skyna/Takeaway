@@ -68,28 +68,6 @@ public enum SortingOption{
     func sort(a : Restaurant, b : Restaurant) -> Bool{
         switch self {
         case .bestMatch:
-            return a.sortingValues.bestMatch < b.sortingValues.bestMatch
-        case .newest:
-            return a.sortingValues.newest < b.sortingValues.newest
-        case .ratingAverage:
-            return a.sortingValues.ratingAverage < b.sortingValues.ratingAverage
-        case .distance:
-            return a.sortingValues.distance < b.sortingValues.distance
-        case .popularity:
-            return a.sortingValues.popularity < b.sortingValues.popularity
-        case .averageProductPrice:
-            return a.sortingValues.averageProductPrice < b.sortingValues.averageProductPrice
-        case .deliveryCosts:
-            return a.sortingValues.deliveryCosts < b.sortingValues.deliveryCosts
-        case .minCost:
-            return a.sortingValues.minCost < b.sortingValues.minCost
-        default: return false
-        }
-    }
-    
-    func sortReverse(a : Restaurant, b : Restaurant) -> Bool{
-        switch self {
-        case .bestMatch:
             return a.sortingValues.bestMatch > b.sortingValues.bestMatch
         case .newest:
             return a.sortingValues.newest > b.sortingValues.newest
@@ -105,6 +83,28 @@ public enum SortingOption{
             return a.sortingValues.deliveryCosts > b.sortingValues.deliveryCosts
         case .minCost:
             return a.sortingValues.minCost > b.sortingValues.minCost
+        default: return false
+        }
+    }
+    
+    func sortReverse(a : Restaurant, b : Restaurant) -> Bool{
+        switch self {
+        case .bestMatch:
+            return a.sortingValues.bestMatch < b.sortingValues.bestMatch
+        case .newest:
+            return a.sortingValues.newest < b.sortingValues.newest
+        case .ratingAverage:
+            return a.sortingValues.ratingAverage < b.sortingValues.ratingAverage
+        case .distance:
+            return a.sortingValues.distance < b.sortingValues.distance
+        case .popularity:
+            return a.sortingValues.popularity < b.sortingValues.popularity
+        case .averageProductPrice:
+            return a.sortingValues.averageProductPrice < b.sortingValues.averageProductPrice
+        case .deliveryCosts:
+            return a.sortingValues.deliveryCosts < b.sortingValues.deliveryCosts
+        case .minCost:
+            return a.sortingValues.minCost < b.sortingValues.minCost
         default: return false
         }
     }

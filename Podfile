@@ -6,4 +6,8 @@ target 'Takeaway' do
     pod 'RxSwift'
     pod 'RxCocoa'
     pod 'RxDataSources', '~> 3.0'
+    
+    target 'TakeawayTests' do
+        inherit! :search_paths
+    end
 end
