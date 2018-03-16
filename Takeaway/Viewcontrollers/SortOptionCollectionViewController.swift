@@ -35,21 +35,8 @@ class SortOptionCollectionViewController: UICollectionViewController {
         //The UICollectionView's datasource is set by default, but since RxDataSources implements it's own datasource for the UICollectionView. Set it to nil or xCode will crash.
         self.collectionView?.dataSource = nil
         self.sortingOptions.bind(to: self.collectionView!.rx.items(cellIdentifier: "Cell", cellType: SortingCollectionViewCell.self)){ row, model, cell in
-            if model.isOpeningState {
-                self.restaurantModel.currentOpeningState
-                                .asObservable()
-                                .map{$0.name}
-                                .bind(to: cell.lblName!.rx.text)
-                                .disposed(by: self.disposeBag)
-            }
-            else {
-                self.restaurantModel.currentSortOption
-                    .asObservable()
-                    .map{$0 == model ? UIColor(named:"SelectedOrange") : UIColor(named:"Orange")}
-                    .subscribe(onNext: {cell.backgroundColor = $0})
-                    .disposed(by: self.disposeBag)
-            }
-            cell.lblName?.text = model.name
+            cell.backgroundColor = model == self.restaurantModel.currentSortOption.value ? UIColor(named:"SelectedOrange") : UIColor(named:"Orange")
+            cell.lblName?.text = model.isOpeningState ? self.restaurantModel.currentOpeningState.value.name : model.name
         }.disposed(by: self.disposeBag)
 
         
@@ -76,7 +63,16 @@ class SortOptionCollectionViewController: UICollectionViewController {
                     
                     strongSelf.restaurantModel.currentSortOption.accept(option)
                 }
+                strongSelf.collectionView?.reloadData()
             }).disposed(by: self.disposeBag)
+        
+        self.restaurantModel.currentOpeningState
+            .asObservable()
+            .subscribe(onNext: {[weak self] (option) in
+                guard let strongSelf = self else { return }
+                strongSelf.collectionView?.reloadData()
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 
